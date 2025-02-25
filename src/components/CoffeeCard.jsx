@@ -53,7 +53,7 @@ const CoffeeCard = ({ coffee }) => {
             <button className="btn bg-gray-600 rounded text-white join-item">
               View
             </button>
-            <Link to={`updatedCoffee/${_id}`}>
+            <Link to={`updateCoffee/${_id}`}>
               <button className="btn bg-amber-400 rounded join-item">
                 Edit
               </button>
