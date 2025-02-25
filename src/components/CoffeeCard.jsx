@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const CoffeeCard = ({ coffee }) => {
+const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
   const { _id, name, quantity, supplier, taste, category, details, photo } =
     coffee;
 
@@ -30,6 +30,9 @@ const CoffeeCard = ({ coffee }) => {
                 text: "Your Coffee has been deleted.",
                 icon: "success",
               });
+
+              const remaining = coffees.filter((coff) => coff._id !== _id);
+              setCoffees(remaining);
             }
           });
       }
@@ -43,10 +46,30 @@ const CoffeeCard = ({ coffee }) => {
       </figure>
       <div className="flex justify-between items-center w-full pr-6 ms-8">
         <div>
-          <h2 className="card-title">{name}</h2>
-          <p>{quantity}</p>
-          <p>{supplier}</p>
-          <p>{taste}</p>
+          <h2 className="card-title">
+            <span className="font-bold text-amber-600">Name: </span>
+            {name}
+          </h2>
+          <p className="text-sm">
+            <span className="font-bold text-amber-600">Available: </span>
+            {quantity}
+          </p>
+          <p className="text-sm">
+            <span className="font-bold text-amber-600">Supplier: </span>
+            {supplier}
+          </p>
+          <p className="text-sm">
+            <span className="font-bold text-amber-600">Taste: </span>
+            {taste}
+          </p>
+          <p className="text-sm">
+            <span className="font-bold text-amber-600">Category: </span>
+            {category}
+          </p>
+          <p className="text-sm">
+            <span className="font-bold text-amber-600">Details: </span>
+            {details}
+          </p>
         </div>
         <div className="card-actions justify-end">
           <div className="join join-vertical space-y-2">
