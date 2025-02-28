@@ -116,7 +116,7 @@ const AddCoffee = () => {
           </div>
         </div>
 
-        {/* form row */}
+        {/* form photo url row */}
         <div className="">
           <div className="w-full">
             <input

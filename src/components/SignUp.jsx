@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
@@ -76,6 +77,12 @@ const SignUp = () => {
                 name="password"
               />
               <button className="btn btn-neutral mt-4">Sign Up</button>
+              <p className="mt-4 font-semibold">
+                Already Signed Up??{" "}
+                <Link to="/signin" className="underline text-blue-700">
+                  Login
+                </Link>
+              </p>
             </form>
           </div>
         </div>
