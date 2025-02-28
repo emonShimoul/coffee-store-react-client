@@ -19,7 +19,7 @@ const SignUp = () => {
         const newUser = { name, email, createdAt };
 
         // save new user info to db
-        fetch("http://localhost:5000/users", {
+        fetch("https://coffee-store-server-delta-blush.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

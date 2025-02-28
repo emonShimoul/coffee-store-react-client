@@ -18,9 +18,12 @@ const Users = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         // delete from db
-        fetch(`http://localhost:5000/users/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://coffee-store-server-delta-blush.vercel.app/users/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
