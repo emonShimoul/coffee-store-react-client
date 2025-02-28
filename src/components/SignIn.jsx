@@ -13,7 +13,7 @@ const SignIn = () => {
 
     signInUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
 
         // update the last login time
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
