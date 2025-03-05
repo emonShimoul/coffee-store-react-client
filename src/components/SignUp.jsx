@@ -13,7 +13,6 @@ const SignUp = () => {
 
     createUser(email, password)
       .then((result) => {
-        // console.log(result.user);
         const createdAt = result.user?.metadata?.creationTime;
 
         const newUser = { name, email, createdAt };
@@ -28,7 +27,6 @@ const SignUp = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            // console.log("user created to db", data);
             if (data.insertedId) {
               console.log("User created successfully!!");
             }
