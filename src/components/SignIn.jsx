@@ -17,7 +17,7 @@ const SignIn = () => {
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
         const loginInfo = { email, lastSignInTime };
 
-        fetch(`https://coffee-store-server-delta-blush.vercel.app/users`, {
+        fetch(`http://localhost:5000/users`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",

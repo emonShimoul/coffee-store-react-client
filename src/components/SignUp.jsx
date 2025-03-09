@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
@@ -18,19 +19,26 @@ const SignUp = () => {
         const newUser = { name, email, createdAt };
 
         // save new user info to db
-        fetch("https://coffee-store-server-delta-blush.vercel.app/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.insertedId) {
-              console.log("User created successfully!!");
-            }
-          });
+
+        // using axios
+        axios.post("http://localhost:5000/users", newUser).then((data) => {
+          console.log(data.data);
+        });
+
+        // using fetch
+        // fetch("http://localhost:5000/users", {
+        //   method: "POST",
+        //   headers: {
+        //     "content-type": "application/json",
+        //   },
+        //   body: JSON.stringify(newUser),
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     if (data.insertedId) {
+        //       console.log("User created successfully!!");
+        //     }
+        //   });
       })
       .catch((error) => {
         console.log("error", error);

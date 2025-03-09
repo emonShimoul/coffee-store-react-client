@@ -23,7 +23,7 @@ const AddCoffee = () => {
       photo,
     };
 
-    fetch("https://coffee-store-server-delta-blush.vercel.app/coffee", {
+    fetch("http://localhost:5000/coffee", {
       method: "POST",
       headers: {
         "content-type": "application/json",

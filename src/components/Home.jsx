@@ -6,6 +6,7 @@ const Home = () => {
   const loadedCoffees = useLoaderData();
 
   const [coffees, setCoffees] = useState(loadedCoffees);
+  console.log(coffees);
 
   return (
     <div>

@@ -28,7 +28,7 @@ const UpdateCoffee = () => {
       photo,
     };
 
-    fetch(`https://coffee-store-server-delta-blush.vercel.app/coffee/${_id}`, {
+    fetch(`http://localhost:5000/coffee/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

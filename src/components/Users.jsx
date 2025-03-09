@@ -1,10 +1,27 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Users = () => {
   const loadedUsers = useLoaderData();
   const [users, setUsers] = useState(loadedUsers);
+
+  // use of normal fetch in get
+  // useEffect(() => {
+  //   fetch("/")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //     });
+  // }, []);
+
+  // use of axios in get
+  // useEffect(() => {
+  //   axios.get("/").then((data) => {
+  //     console.log(data.data);
+  //   });
+  // }, []);
 
   const handleUserDelete = (id) => {
     Swal.fire({
@@ -18,12 +35,9 @@ const Users = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         // delete from db
-        fetch(
-          `https://coffee-store-server-delta-blush.vercel.app/users/${id}`,
-          {
-            method: "DELETE",
-          }
-        )
+        fetch(`http://localhost:5000/users/${id}`, {
+          method: "DELETE",
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
