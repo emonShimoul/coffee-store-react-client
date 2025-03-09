@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const SignIn = () => {
   const { signInUser } = useContext(AuthContext);
@@ -17,17 +18,23 @@ const SignIn = () => {
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
         const loginInfo = { email, lastSignInTime };
 
-        fetch(`http://localhost:5000/users`, {
-          method: "PATCH",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(loginInfo),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("Sign in data updated in the db", data);
-          });
+        // use of axios
+        axios
+          .patch("http://localhost:5000/users", loginInfo)
+          .then((data) => console.log("Sign in successfully with", data.data));
+
+        // use of fetch
+        // fetch(`http://localhost:5000/users`, {
+        //   method: "PATCH",
+        //   headers: {
+        //     "content-type": "application/json",
+        //   },
+        //   body: JSON.stringify(loginInfo),
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     console.log("Sign in data updated in the db", data);
+        //   });
       })
       .catch((error) => {
         console.log(error);

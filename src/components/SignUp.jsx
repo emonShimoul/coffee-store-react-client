@@ -22,7 +22,9 @@ const SignUp = () => {
 
         // using axios
         axios.post("http://localhost:5000/users", newUser).then((data) => {
-          console.log(data.data);
+          if (data.data.insertedId) {
+            alert("User created successfully!!");
+          }
         });
 
         // using fetch
