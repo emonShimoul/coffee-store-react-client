@@ -1,14 +1,23 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+// import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 const Users2 = () => {
-  const [users, setUsers] = useState([]);
+  const { data: users } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/users");
+      return res.json();
+    },
+  });
 
-  useEffect(() => {
-    fetch("http://localhost:5000/users")
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
-  }, []);
+  //   const [users, setUsers] = useState([]);
+
+  //   useEffect(() => {
+  //     fetch("http://localhost:5000/users")
+  //       .then((res) => res.json())
+  //       .then((data) => setUsers(data));
+  //   }, []);
 
   const handleUserDelete = (id) => {
     Swal.fire({
@@ -58,7 +67,7 @@ const Users2 = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {users.map((user) => (
+            {users?.map((user) => (
               <tr key={user._id}>
                 <th>1</th>
                 <td>{user.name}</td>
