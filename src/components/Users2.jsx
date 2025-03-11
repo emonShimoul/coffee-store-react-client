@@ -3,7 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 
 const Users2 = () => {
-  const { data: users } = useQuery({
+  const {
+    isPending,
+    isError,
+    error,
+    data: users,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/users");
@@ -49,6 +54,15 @@ const Users2 = () => {
       }
     });
   };
+
+  if (isPending) {
+    return <span className="loading loading-spinner text-primary"></span>;
+  }
+
+  if (isError) {
+    return <p>{error.message}</p>;
+  }
+
   return (
     <div>
       {/* <h2 className="text-3xl">Users: {users.length}</h2> */}
@@ -67,7 +81,7 @@ const Users2 = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {users?.map((user) => (
+            {users.map((user) => (
               <tr key={user._id}>
                 <th>1</th>
                 <td>{user.name}</td>
